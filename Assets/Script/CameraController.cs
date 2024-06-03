@@ -19,6 +19,7 @@ public class CameraController :NetworkBehaviour
     [SerializeField] bool invertX;
     [SerializeField] bool invertY;
     [SerializeField] bool isMine = true;
+    
 
 
     float rotationX;
@@ -31,16 +32,17 @@ public class CameraController :NetworkBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        var player = NetworkManager.LocalClient.PlayerObject.transform;
+        /*var player = NetworkManager.LocalClient.PlayerObject.transform;
         followTarget = player;
-        player.GetComponent<PlayerController>().cameraController = this;
+        player.GetComponent<PlayerController>().cameraController = this;*/
 
     }
 
     
 
-    private void Update()
+    private void FixedUpdate()
     {
+        if (!IsLocalPlayer) { return; }
         invertXval = (invertX) ? -1 : 1;
         invertYval = (invertY) ? -1 : 1;
 
@@ -57,6 +59,6 @@ public class CameraController :NetworkBehaviour
         transform.rotation = targetRotation;
     }
     
-    public Quaternion PlanarRotation => Quaternion.Euler(0, rotationY, 0);
+    public Quaternion PlanarRotation => Quaternion.Euler(0, rotationY, 0);    
 }
 

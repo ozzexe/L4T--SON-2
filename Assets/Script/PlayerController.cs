@@ -35,7 +35,7 @@ namespace UnityTutorial.PlayerControl
 
 
         private void Start()
-        {
+        {            
             _hasAnimator = TryGetComponent<Animator>(out _animator);
             _playerRigidbody = GetComponent<Rigidbody>();
             _inputManager = GetComponent<InputManager>();
@@ -87,23 +87,30 @@ namespace UnityTutorial.PlayerControl
         }
 
 
-        public override void OnNetworkSpawn() { 
+        public override void OnNetworkSpawn() {
+            base.OnNetworkSpawn();
             randomNumber.OnValueChanged += (MyCustomData previousValue, MyCustomData newValue) => {
                 Debug.Log(OwnerClientId + ";  " + newValue._int + "; " + newValue._bool + "; " + newValue.message);
+                base.OnNetworkSpawn();
+                if (IsLocalPlayer) { return; } 
+                cameraController.GetComponent<Camera>().enabled = false;
+                //cameraController.enabled = false;
             };
             
         }
 
 
         private void Move()
-        {          
+        {
+            if (!IsLocalPlayer) { return; }
 
-            if (!IsOwner) return;
+           
 
-            if (Input.GetKeyDown(KeyCode.T)) {
+            if (Input.GetKeyDown(KeyCode.T)) {                
                 spawnedObjectTransform = Instantiate(spawnedObjectPrefab);
                 spawnedObjectTransform.GetComponent<NetworkObject>().Spawn(true);
-                
+
+                //TestClientRpc(new ClientRpcParams { Send = new ClientRpcSendParams { TargetClientIds = new List<ulong> { 1 } } });
                 /*
                 randomNumber.Value = new MyCustomData {
                     _int = 10,
@@ -136,7 +143,18 @@ namespace UnityTutorial.PlayerControl
             
                 
             
-        }        
+        }
+
+        [ServerRpc]
+        private void TestServerRpc(ServerRpcParams serverRpcParams) {
+            Debug.Log("TestServerRpc " + OwnerClientId + "; " + serverRpcParams.Receive.SenderClientId);
+        }
+
+        [ClientRpc]
+        private void TestClientRpc(ClientRpcParams clientRpcParams) {
+            Debug.Log("TestClientRpc");
+        }
+
     }
 }
 
