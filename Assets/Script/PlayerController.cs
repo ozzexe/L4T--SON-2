@@ -29,8 +29,8 @@ namespace UnityTutorial.PlayerControl
         private int _yVelHash;        
         
 
-        private const float _walkSpeed = 2f;
-        private const float _runSpeed = 6f;
+        private const float _walkSpeed = 45f;
+        private const float _runSpeed = 90f;
         private Vector2 _currentVelocity;       
 
 
