@@ -334,6 +334,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5378759225558895515, guid: c354564d3b6aa8847ac6f069e0a2937a, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 88864e69d8478b340981f38083c41284, type: 3}
+    - target: {fileID: 5378759225558895515, guid: c354564d3b6aa8847ac6f069e0a2937a, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig1:Hips'\n\tTransform 'mixamorig1:LeftHandThumb1'\n\tTransform
+        'mixamorig1:RightHand'\n\tTransform 'mixamorig1:LeftHandMiddle2'\n\tTransform
+        'mixamorig1:RightFoot'\n\tTransform 'mixamorig1:Spine1'\n\tTransform 'mixamorig1:RightLeg'\n\tTransform
+        'mixamorig1:RightHandMiddle2'\n\tTransform 'mixamorig1:Hips'\n\tTransform
+        'mixamorig1:RightArm'\n\tand more ...\n\tFrom animation clip 'Idle'\n\tFrom
+        animation clip 'Run'\n\tFrom animation clip 'SolKolGrab'\n\tFrom animation
+        clip 'Toss'\n\tFrom animation clip 'SagKolGrab'\n\tFrom animation clip 'LeftPunch2'\n\tFrom
+        animation clip 'RightPunch2'"
+      objectReference: {fileID: 0}
     - target: {fileID: 5444586041001601066, guid: c354564d3b6aa8847ac6f069e0a2937a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

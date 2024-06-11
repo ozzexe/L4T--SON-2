@@ -325,10 +325,10 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: LeftHand Grab
     m_StateMachine: {fileID: -2877007803614569942}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: cbca62c47b57e5e4f98d600d4821cdf9, type: 2}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 1
+    m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 0
@@ -337,10 +337,10 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: RightHand Grab
     m_StateMachine: {fileID: 4369051290223932094}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: d2008cd0f24ba3549b0d1ce07fb20e69, type: 2}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 1
+    m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 0
@@ -349,10 +349,10 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: LeftHand Punch
     m_StateMachine: {fileID: 5235370610493225206}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: cbca62c47b57e5e4f98d600d4821cdf9, type: 2}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 1
+    m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 0
@@ -361,10 +361,10 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: RightHand Punch
     m_StateMachine: {fileID: 569930722871738248}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: d2008cd0f24ba3549b0d1ce07fb20e69, type: 2}
     m_Motions: []
     m_Behaviours: []
-    m_BlendingMode: 1
+    m_BlendingMode: 0
     m_SyncedLayerIndex: -1
     m_DefaultWeight: 1
     m_IKPass: 0
