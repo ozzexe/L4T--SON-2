@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Collections;
+using Unity.Netcode;
 
-public class LimbCollision : MonoBehaviour
+public class LimbCollision : NetworkBehaviour
 {
     public RagdollPlayerController playerController;
     void Start()

@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Collections;
+using Unity.Netcode;
 
-public class CharacterMechanics : MonoBehaviour
+public class CharacterMechanics : NetworkBehaviour
 {
     public Animator animator;
     private bool hold;

@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 using System.Collections;
-
-public class LimbHealth : MonoBehaviour
+using System.Collections.Generic;
+using Unity.Collections;
+using Unity.Netcode;
+public class LimbHealth : NetworkBehaviour 
 {
     public int health = 3;
     public float normalSpring = 50f;  // Can durumu normalken yay sabiti

@@ -1,8 +1,11 @@
+using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Unity.Collections;
+using Unity.Netcode;
 
-public class TossDamage : MonoBehaviour
+public class TossDamage : NetworkBehaviour 
 {
     private bool isTossing = false;
 

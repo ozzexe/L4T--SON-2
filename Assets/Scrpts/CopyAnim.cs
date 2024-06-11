@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Collections;
+using Unity.Netcode;
 
-public class CopyAnim : MonoBehaviour
+public class CopyAnim : NetworkBehaviour
 {
     public Transform target;
     private ConfigurableJoint joint;

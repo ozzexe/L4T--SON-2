@@ -306,7 +306,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1369983392528319670}
 --- !u!114 &5374880459930550282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,8 +342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnedObjectPrefab: {fileID: 8709980162883865075, guid: a59b50ba2e5c810459114a8201af65ee, type: 3}
   cameraController: {fileID: 5646329872299480595}
-  AnimBlendSpeed: 8.9
-  rotationSpeed: 500
+  AnimBlendSpeed: 8
+  rotationSpeed: 300
   jumpPower: 0
 --- !u!114 &4476372695683959782
 MonoBehaviour:
@@ -2250,7 +2250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 148971485484006487}
   rotationSpeed: 3
-  distance: 5
+  distance: 6
   minVerticalAngle: -15
   maxVerticalAngle: 45
   framingOffset: {x: 0, y: 2}

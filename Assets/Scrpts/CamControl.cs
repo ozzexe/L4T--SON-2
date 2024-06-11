@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class CamControl : MonoBehaviour
+public class CamControl : NetworkBehaviour
 {
     public float rotationSpeed = 1;
     public Transform root;
