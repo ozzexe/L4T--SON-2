@@ -4,18 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Collections;
 using Unity.Netcode;
+using UnityTutorial.Manager;
 
 public class CharacterMechanics : NetworkBehaviour
 {
     public Animator animator;
-    private bool hold;
-    public KeyCode grabKey;
-    public KeyCode leftPunchKey = KeyCode.Q;
-    public KeyCode rightPunchKey = KeyCode.E;
-    public KeyCode tossKey = KeyCode.R;
+    private bool hold;   
     public bool canGrab;
     public int isLeftorRight;
 
+    [SerializeField] InputManager _inputManager;
     private bool isLeftPunching = false;
     private bool isRightPunching = false;
     private GameObject heldObject; // Tutulan nesneyi referans almak için
@@ -23,33 +21,19 @@ public class CharacterMechanics : NetworkBehaviour
     void Update()
     {
         // El kaldýrma animasyonlarý
-        if (Input.GetMouseButtonDown(isLeftorRight))
-        {
-            if (isLeftorRight == 0)
-            {
-                animator.SetBool("isLeftHandUp", true);
-            }
-            else if (isLeftorRight == 1)
-            {
-                animator.SetBool("isRightHandUp", true);
-            }
-        }
-        else if (Input.GetMouseButtonUp(isLeftorRight))
-        {
-            if (isLeftorRight == 0)
-            {
-                animator.SetBool("isLeftHandUp", false);
-            }
-            else if (isLeftorRight == 1)
-            {
-                animator.SetBool("isRightHandUp", false);
-            }
-        }
+        if (_inputManager.LeftGrab)
+            animator.SetBool("isLeftHandUp", true);
+        else
+            animator.SetBool("isLeftHandUp", false);
+        if (_inputManager.RightGrab)
+            animator.SetBool("isRightHandUp", true);
+        else
+            animator.SetBool("isRightHandUp", false);
 
         // Grab mekanikleri
         if (canGrab)
         {
-            if (Input.GetKey(grabKey))
+            if (_inputManager.LeftGrab || _inputManager.RightGrab)
             {
                 hold = true;
             }
@@ -61,7 +45,7 @@ public class CharacterMechanics : NetworkBehaviour
         }
 
         // Toss mekanizmasý
-        if (hold && Input.GetKeyDown(tossKey))
+        if (hold && _inputManager.Toss)
         {
             animator.SetBool("isToss", true);
 
@@ -74,28 +58,28 @@ public class CharacterMechanics : NetworkBehaviour
                 }
             }
         }
-        if (hold && Input.GetKeyUp(tossKey))
+        if (hold && !_inputManager.Toss)
         {
             animator.SetBool("isToss", false);
         }
 
         // Punch animasyonlarý
-        if (Input.GetKeyDown(leftPunchKey))
+        if (_inputManager.LeftPunch)
         {
             isLeftPunching = true;
             animator.SetBool("isLeftPunch", true);
         }
-        if (Input.GetKeyUp(leftPunchKey))
+        if (!_inputManager.LeftPunch)
         {
             isLeftPunching = false;
             animator.SetBool("isLeftPunch", false);
         }
-        if (Input.GetKeyDown(rightPunchKey))
+        if (_inputManager.RightPunch)
         {
             isRightPunching = true;
             animator.SetBool("isRightPunch", true);
         }
-        if (Input.GetKeyUp(rightPunchKey))
+        if (!_inputManager.RightPunch)
         {
             isRightPunching = false;
             animator.SetBool("isRightPunch", false);

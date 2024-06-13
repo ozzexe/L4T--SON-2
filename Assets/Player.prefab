@@ -1002,12 +1002,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5378759225558895515}
-  grabKey: 323
-  leftPunchKey: 113
-  rightPunchKey: 101
-  tossKey: 114
   canGrab: 1
   isLeftorRight: 0
+  _inputManager: {fileID: 7377516604779431916}
 --- !u!114 &6433968029679058711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1992,8 +1989,8 @@ Rigidbody:
   m_GameObject: {fileID: 2789922066560175270}
   serializedVersion: 4
   m_Mass: 3
-  m_Drag: 3
-  m_AngularDrag: 3
+  m_Drag: 3.8
+  m_AngularDrag: 3.8
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2138,8 +2135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5378759225558895515}
-  speed: 200
-  jumpForce: 5000
+  speed: 135
+  jumpForce: 3500
   cameraController: {fileID: 2218888418532199265}
   spawnedObjectPrefab: {fileID: 0}
   hips: {fileID: 4528982730931909692}
@@ -5990,12 +5987,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5378759225558895515}
-  grabKey: 324
-  leftPunchKey: 113
-  rightPunchKey: 101
-  tossKey: 114
   canGrab: 1
   isLeftorRight: 1
+  _inputManager: {fileID: 7377516604779431916}
 --- !u!114 &4646903531572500689
 MonoBehaviour:
   m_ObjectHideFlags: 0
