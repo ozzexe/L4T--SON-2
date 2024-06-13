@@ -28,6 +28,7 @@ namespace UnityTutorial.Manager
             _lookAction = _currentMap.FindAction("Look");
             _runAction = _currentMap.FindAction("Run");
             _jumpAction = _currentMap.FindAction("Jump");
+            
 
             
 
@@ -41,7 +42,7 @@ namespace UnityTutorial.Manager
             _moveAction.canceled += onMove;
             _lookAction.canceled += onLook;
             _runAction.canceled += onRun;
-            _jumpAction.canceled += onJump;
+            
             
         }
 
@@ -52,6 +53,7 @@ namespace UnityTutorial.Manager
         private void onLook(InputAction.CallbackContext context)
         {
             Look = context.ReadValue<Vector2>();
+            
         }
         private void onRun(InputAction.CallbackContext context)
         {

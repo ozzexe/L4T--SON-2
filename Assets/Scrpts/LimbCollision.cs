@@ -15,6 +15,10 @@ public class LimbCollision : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        playerController.isGrounded = true;
+        if (collision.gameObject.CompareTag("isGrounded"))
+        {
+            playerController.isGrounded = true;
+        }
+
     }
 }

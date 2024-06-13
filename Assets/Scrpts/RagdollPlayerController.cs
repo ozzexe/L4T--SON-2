@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Netcode;
 using static UnityTutorial.PlayerControl.PlayerController;
+using UnityTutorial.Manager;
+using JetBrains.Annotations;
 
 public class RagdollPlayerController : NetworkBehaviour
 {
@@ -12,11 +14,15 @@ public class RagdollPlayerController : NetworkBehaviour
     public float speed;
     public float jumpForce;
     public CamControl cameraController;
+    private Vector2 _currentVelocity;
 
     [SerializeField] private Transform spawnedObjectPrefab;
 
     private Transform spawnedObjectTransform;
     private bool _hasAnimator;
+    private InputManager _inputManager;
+    private const float _walkSpeed = 15f;
+    private const float _runSpeed = 45f;
 
     public Rigidbody hips;
     public bool isGrounded;
@@ -27,49 +33,71 @@ public class RagdollPlayerController : NetworkBehaviour
     {
         hips = GetComponent<Rigidbody>();
         limbHealth = GetComponentsInChildren<LimbHealth>(); // LimbHealth bileþenini al
-    }
+        _inputManager = GetComponent<InputManager>();
+    }   
 
     private void FixedUpdate()
     {
 
-        Move();
+        Move();       
 
-        if (!IsLocalPlayer) { return; }
+        
+
+        
 
         // Karakterin caný 0 deðilse hareket kontrollerini gerçekleþtir
         if (checkLimbs())
         {
-            if (Input.GetKey(KeyCode.W))
+            //if (Input.GetKey(KeyCode.W))
+            //{
+            //    animator.SetBool("isWalking", true);
+            //    hips.AddForce(hips.transform.forward * speed);
+            //}
+            //else
+            //{
+            //    animator.SetBool("isWalking", false);
+            //}
+
+            //if (Input.GetKey(KeyCode.A))
+            //{
+            //    hips.AddForce(-hips.transform.right * speed);
+            //}
+
+            //if (Input.GetKey(KeyCode.S))
+            //{
+            //    animator.SetBool("isWalking", true);
+            //    hips.AddForce(-hips.transform.forward * speed);
+            //}
+            //else if (!Input.GetKey(KeyCode.W))
+            //{
+            //    animator.SetBool("isWalking", false);
+            //}
+
+            //if (Input.GetKey(KeyCode.D))
+            //{
+            //    hips.AddForce(hips.transform.right * speed);
+            //}
+
+            if (_inputManager.Move != Vector2.zero)
             {
                 animator.SetBool("isWalking", true);
-                hips.AddForce(hips.transform.forward * speed);
-            }
+                _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, _inputManager.Move.x * speed , Time.fixedDeltaTime);
+                _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, _inputManager.Move.y * speed , Time.fixedDeltaTime);
+              
+
+                var xVelDifference = _currentVelocity.x - hips.velocity.x;
+                var zVelDifference = _currentVelocity.y - hips.velocity.z;
+
+                hips.AddForce(transform.TransformVector(new Vector3(xVelDifference, 0, zVelDifference)));
+
+                //hips.AddForce(new Vector3(-_inputManager.Move.x,0f,-_inputManager.Move.y) * speed);
+            }            
             else
             {
                 animator.SetBool("isWalking", false);
-            }
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                hips.AddForce(-hips.transform.right * speed);
             }
-
-            if (Input.GetKey(KeyCode.S))
-            {
-                animator.SetBool("isWalking", true);
-                hips.AddForce(-hips.transform.forward * speed);
-            }
-            else if (!Input.GetKey(KeyCode.W))
-            {
-                animator.SetBool("isWalking", false);
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                hips.AddForce(hips.transform.right * speed);
-            }
-
-            if (Input.GetAxis("Jump") > 0)
+            if (_inputManager.Jump)
             {
                 if (isGrounded)
                 {
@@ -136,6 +164,7 @@ public class RagdollPlayerController : NetworkBehaviour
     {
         if (!IsLocalPlayer) { return; }
 
+       
 
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -160,6 +189,8 @@ public class RagdollPlayerController : NetworkBehaviour
         }
 
         if (!_hasAnimator) return;
+
+
     }
 
     [ServerRpc]

@@ -17,8 +17,7 @@ public class CameraController :NetworkBehaviour
     [SerializeField] Vector2 framingOffset;
 
     [SerializeField] bool invertX;
-    [SerializeField] bool invertY;
-    [SerializeField] bool isMine = true;
+    [SerializeField] bool invertY;    
     
 
 
@@ -48,7 +47,6 @@ public class CameraController :NetworkBehaviour
 
         rotationX += Input.GetAxis("Mouse Y") * invertYval * rotationSpeed;
         rotationX = Mathf.Clamp(rotationX, minVerticalAngle, maxVerticalAngle);
-
         rotationY += Input.GetAxis("Mouse X") * invertXval * rotationSpeed;
 
         var targetRotation = Quaternion.Euler(rotationX, rotationY, 0);
