@@ -88,7 +88,7 @@ public class CharacterMechanics : NetworkBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (hold && col.transform.tag == "Object")
+        if (hold && col.transform.tag == "Player" || hold && col.transform.tag == "Ball")
         {
             Rigidbody rb = col.transform.GetComponent<Rigidbody>();
             if (rb != null)
@@ -102,7 +102,7 @@ public class CharacterMechanics : NetworkBehaviour
                 FixedJoint fj = transform.gameObject.AddComponent(typeof(FixedJoint)) as FixedJoint;
             }
         }
-        else if (col.transform.tag == "Object")
+        else if (col.transform.tag == "Player")
         {
             LimbHealth limbHealth = col.transform.GetComponent<LimbHealth>();
             if (limbHealth != null && (isLeftPunching || isRightPunching))

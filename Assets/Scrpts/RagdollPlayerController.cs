@@ -18,6 +18,7 @@ public class RagdollPlayerController : NetworkBehaviour
 
     [SerializeField] private Transform spawnedObjectPrefab;
 
+
     private Transform spawnedObjectTransform;
     private bool _hasAnimator;
     private InputManager _inputManager;
@@ -97,7 +98,7 @@ public class RagdollPlayerController : NetworkBehaviour
                 animator.SetBool("isWalking", false);
 
             }
-            if (_inputManager.Jump)
+            if (Input.GetAxis("Jump") > 0) //(_inputManager.Jump)
             {
                 if (isGrounded)
                 {
@@ -156,6 +157,7 @@ public class RagdollPlayerController : NetworkBehaviour
             if (IsLocalPlayer) { return; }
             cameraController.GetComponent<Camera>().enabled = false;
             //cameraController.enabled = false;
+            
         };
 
     }

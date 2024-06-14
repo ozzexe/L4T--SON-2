@@ -12,6 +12,7 @@ public class NetworkManagerUI : NetworkBehaviour {
     [SerializeField] private Button clientBtn;
 
 
+
     private void Awake() {
         serverBtn.onClick.AddListener(() => {         
             NetworkManager.Singleton.StartServer();
@@ -21,6 +22,7 @@ public class NetworkManagerUI : NetworkBehaviour {
         });
         clientBtn.onClick.AddListener(() => {         
             NetworkManager.Singleton.StartClient();
+            
         });
     }
 
